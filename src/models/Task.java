@@ -1,7 +1,7 @@
 package models;
 
 public class Task {
-    protected int id;
+    protected int id = -1;
     protected String name;
     protected String description;
     protected TaskStates state;

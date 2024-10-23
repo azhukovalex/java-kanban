@@ -28,7 +28,7 @@ public class TaskManager {
         subtasks.put(subtask.getId(), subtask);
         Epic epic = epics.get(subtask.getEpicId());
         if (epic != null) {
-            epic.addSubtask(subtask);
+            epic.addSubtask(subtask.getId());
         }
         return subtask;
     }
@@ -94,11 +94,37 @@ public class TaskManager {
     }
 
     public void updateSubTask(SubTask subtask) {
-        subtasks.put(subtask.getId(), subtask);
         Epic epic = epics.get(subtask.getEpicId());
-        if (epic != null) {
-            epic.addSubtask(subtask);
-            epic.updateStatus();
+        int updatedSubtaskId = subtask.getId();
+
+        if (subtasks.containsKey(updatedSubtaskId)) {
+            subtasks.replace(updatedSubtaskId, subtask);
+            boolean doneStateTotal = true;
+            boolean newStateTotal = true;
+
+            if (subtasks.isEmpty()) {
+                epic.setState(TaskStates.NEW);
+                return;
+            }
+            for (SubTask st : subtasks.values()) {
+                //Boolean checkState = st.getStatus() != TaskStates.DONE;
+                if (st.getStatus() != TaskStates.DONE && epic.getId() == st.getEpicId()) {
+                    doneStateTotal = false;
+                }
+                if (st.getStatus() != TaskStates.NEW && epic.getId() == st.getEpicId()) {
+                    newStateTotal = false;
+                }
+            }
+
+            if (doneStateTotal) {
+                epic.updateStatus(TaskStates.DONE);
+            } else if (newStateTotal) {
+                epic.setState(TaskStates.NEW);
+            } else {
+                epic.setState(TaskStates.IN_PROGRESS);
+            }
+
+
         }
     }
 }

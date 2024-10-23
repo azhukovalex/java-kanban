@@ -1,9 +1,8 @@
 package models;
-import java.util.HashMap;
-import java.util.Collection;
+import java.util.ArrayList;
 
 public class Epic extends Task{
-    private final HashMap<Integer, SubTask> subtasks = new HashMap<>();
+    private final ArrayList<Integer> subtasks = new ArrayList<>();
 
     //Constructors
     public Epic(int id, String title, String description, TaskStates taskStates) {
@@ -15,13 +14,13 @@ public class Epic extends Task{
     }
 
     //Getters
-    public Collection<SubTask> getSubtasks() {
-        return subtasks.values();
+    public ArrayList<Integer> getSubtasks() {
+        return subtasks;
     }
 
     //Operations
-    public void addSubtask(SubTask subtask) {
-        subtasks.put(subtask.getId(), subtask);
+    public void addSubtask(Integer id) {
+        subtasks.add(id);
     }
 
     //Overrides
@@ -36,41 +35,18 @@ public class Epic extends Task{
                 '}';
     }
 
-    public void updateStatus() {
-        boolean doneStateTotal = true;
-        boolean newStateTotal = true;
-        
-        if (subtasks.isEmpty()) {
-            setState(TaskStates.NEW);
-            return;
-        }
-        for (SubTask subtask : subtasks.values()) {
-            if (subtask.getStatus() != TaskStates.DONE) {
-                doneStateTotal = false;
-            }
-            if (subtask.getStatus() != TaskStates.NEW) {
-                newStateTotal = false;
-            }
-        }
-
-        if (doneStateTotal) {
-            setState(TaskStates.DONE);
-        } else if (newStateTotal) {
-            setState(TaskStates.NEW);            
-        } else {
-            setState(TaskStates.IN_PROGRESS);
-        }
+    public void updateStatus(TaskStates status) {
+        setState(status);
     }
 
     public void deleteSubtask(int id) {
-        if (subtasks.containsKey(id)) {
-            subtasks.remove(id);
-            updateStatus();
+        if (subtasks.contains(id)) {
+            int index = subtasks.indexOf(id);
+            subtasks.remove(index);
         }
     }
 
     public void deleteAllSubtasks() {
         subtasks.clear();
-        updateStatus();
     }
 }
