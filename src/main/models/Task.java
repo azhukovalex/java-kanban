@@ -1,13 +1,15 @@
-package models;
+package main.models;
+
 
 public class Task {
-    protected int id = -1;
+    protected int id;
     protected String name;
     protected String description;
-    protected TaskStates state;
+    protected main.models.Status state;
+    protected TaskType taskType;
     
     //Constructors
-    public Task(int id, String name, String description, TaskStates state) {
+    public Task(int id, String name, String description, main.models.Status state) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -17,7 +19,7 @@ public class Task {
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
-        this.state = TaskStates.NEW;
+        this.state = main.models.Status.NEW;
     }
     
     //Getters
@@ -33,7 +35,7 @@ public class Task {
         return description;
     }
 
-    public TaskStates getStatus() {
+    public main.models.Status getStatus() {
         return state;
     }
     
@@ -50,8 +52,8 @@ public class Task {
         this.description = description;
     }
 
-    protected void setState(TaskStates state) {
-        this.state = state;
+    public void setStatus(main.models.Status status) {
+        this.state = status;
     }
     
     //Overrides
