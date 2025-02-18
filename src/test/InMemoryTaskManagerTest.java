@@ -47,11 +47,11 @@ public class InMemoryTaskManagerTest {
         inMemoryTaskManager.saveSubTask(subTask1);
         inMemoryTaskManager.saveSubTask(subTask2);
 
-        Assertions.assertEquals(2,epicTask1.getSubTasks().size());
+        Assertions.assertEquals(2, epicTask1.getSubTasks().size());
 
         inMemoryTaskManager.deleteSubTaskById(subTask1.getId());
 
-        Assertions.assertEquals(1,epicTask1.getSubTasks().size());
+        Assertions.assertEquals(1, epicTask1.getSubTasks().size());
     }
 
     @Test

@@ -33,7 +33,7 @@ public class InMemoryHistoryManagerTest {
     void addInHistoryManager() {
         //пустая история
         List<Task> history = taskHistoryManager.getHistory();
-        assertEquals(0,history.size(), "История не пустая.");
+        assertEquals(0, history.size(), "История не пустая.");
 
         //дублирование
         taskHistoryManager.add(task1);
@@ -50,7 +50,7 @@ public class InMemoryHistoryManagerTest {
         taskHistoryManager.add(task3);
 
         taskHistoryManager.remove(task1.getId());
-        assertEquals(List.of(task2,task3), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
+        assertEquals(List.of(task2, task3), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class InMemoryHistoryManagerTest {
         taskHistoryManager.add(task3);
 
         taskHistoryManager.remove(task3.getId());
-        assertEquals(List.of(task1,task2), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
+        assertEquals(List.of(task1, task2), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
     }
 
     @Test
@@ -70,6 +70,6 @@ public class InMemoryHistoryManagerTest {
         taskHistoryManager.add(task3);
 
         taskHistoryManager.remove(task2.getId());
-        assertEquals(List.of(task1,task3), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
+        assertEquals(List.of(task1, task3), taskHistoryManager.getHistory(), "Задачи в порядке вызоыв в истории");
     }
 }
