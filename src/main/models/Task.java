@@ -1,25 +1,27 @@
 package main.models;
 
 
+import java.util.Objects;
+
 public class Task {
     protected int id;
     protected String name;
     protected String description;
-    protected main.models.Status state;
+    protected Status status;
     protected TaskType taskType;
     
     //Constructors
-    public Task(int id, String name, String description, main.models.Status state) {
+    public Task(int id, String name, String description, Status state) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.state = state;
+        this.status = state;
     }
 
     public Task(String name, String description) {
         this.name = name;
         this.description = description;
-        this.state = main.models.Status.NEW;
+        this.status = Status.NEW;
     }
     
     //Getters
@@ -36,7 +38,7 @@ public class Task {
     }
 
     public main.models.Status getStatus() {
-        return state;
+        return status;
     }
     
     //Setters
@@ -53,16 +55,16 @@ public class Task {
     }
 
     public void setStatus(main.models.Status status) {
-        this.state = status;
+        this.status = status;
     }
     
     //Overrides
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Task other)) return false;
-
-        return this.id == other.id;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return id == task.id && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status && taskType == task.taskType;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class Task {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", state=" + state +
+                ", state=" + status +
                 '}';
     }
 }

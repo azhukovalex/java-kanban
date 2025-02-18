@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 public class InMemoryTaskManagerTest {
 
     private TaskManager inMemoryTaskManager;
@@ -18,7 +19,7 @@ public class InMemoryTaskManagerTest {
 
     @Test
     void shouldCheckThatSameTaskAreEqual() {
-        Task task1 = new main.models.Task(1, "описание задачи 1", "задача 1", main.models.Status.NEW);
+        Task task1 = new Task(1, "описание задачи 1", "задача 1", Status.NEW);
         Task task2 = new Task(1, "описание задачи 1", "задача 1", Status.NEW);
 
         Assertions.assertEquals(task1, task2);
@@ -34,15 +35,23 @@ public class InMemoryTaskManagerTest {
     }
 
     @Test
-    void shouldCheckThatEpicCouldNotBePutInEpic() {
+    void shouldHaveOnlyOneSubtask() {
 
         EpicTask epicTask1 = new EpicTask("EpicTask1", "epic1 descr");
-        EpicTask epicTask2 = new EpicTask("EpicTask2", "epic2 descr");
 
-        SubTask subTask1 = new SubTask("SubTask1", "des1", 3);
-        SubTask subTask2 = new SubTask("SubTask1", "des1", 3);
+        inMemoryTaskManager.saveEpicTask(epicTask1);
 
-        Assertions.assertEquals(subTask1, subTask2);
+        SubTask subTask1 = new SubTask("SubTask1", "des1", epicTask1.getId());
+        SubTask subTask2 = new SubTask("SubTask2", "des1", epicTask1.getId());
+
+        inMemoryTaskManager.saveSubTask(subTask1);
+        inMemoryTaskManager.saveSubTask(subTask2);
+
+        Assertions.assertEquals(2,epicTask1.getSubTasks().size());
+
+        inMemoryTaskManager.deleteSubTaskById(subTask1.getId());
+
+        Assertions.assertEquals(1,epicTask1.getSubTasks().size());
     }
 
     @Test
@@ -64,7 +73,7 @@ public class InMemoryTaskManagerTest {
         inMemoryTaskManager.saveSingleTask(task1);
         inMemoryTaskManager.getSingleTaskById(1);
         inMemoryTaskManager.getSingleTaskById(1);
-        Assertions.assertEquals(2, inMemoryTaskManager.getHistory().size());
+        Assertions.assertEquals(1, inMemoryTaskManager.getHistory().size());
 
 
     }

@@ -5,7 +5,7 @@ public class SubTask extends Task {
     private final int epicId;
 
     //Constructors
-    public SubTask(int id, String title, String description, main.models.Status status, int epicId) {
+    public SubTask(int id, String title, String description, Status status, int epicId) {
         super(id, title, description, status);
         this.epicId = epicId;
     }
@@ -30,7 +30,7 @@ public class SubTask extends Task {
                 ", id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 '}';
     }
 }

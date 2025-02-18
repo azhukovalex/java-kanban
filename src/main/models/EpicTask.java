@@ -8,7 +8,6 @@ public class EpicTask extends Task {
 
     public EpicTask(int id, String name, String description, Status status) {
         super(id, name, description, status);
-
         taskType = TaskType.EPICTASK;
     }
 
@@ -35,7 +34,7 @@ public class EpicTask extends Task {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 ", subTasks=" + subTasks +
                 '}';
     }

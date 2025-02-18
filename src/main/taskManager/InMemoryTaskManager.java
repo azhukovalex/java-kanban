@@ -43,7 +43,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteSingleTask(Integer taskId) {
         if (tasks.containsKey(taskId)) {
             tasks.remove(taskId);
-            historyManager.remove(tasks.get(taskId));
+            historyManager.remove(taskId);
         }
     }
 
@@ -124,7 +124,7 @@ public class InMemoryTaskManager implements TaskManager {
             epicTask.setSubTasks(list);
             calculateEpicStatus(epicTask);
 
-            historyManager.remove(subTask);
+            historyManager.remove(subTaskId);
 
         } else {
             System.out.printf("Сабтаски с id = %s нет в базе", subTaskId);
@@ -167,7 +167,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         if (tasks.containsKey(epicId)) {
             tasks.remove(epicId);
-            historyManager.remove(epic);
+            historyManager.remove(epicId);
         }
 
     }
@@ -220,6 +220,7 @@ public class InMemoryTaskManager implements TaskManager {
         for (Task value : tasks.values()) {
             if (value instanceof SingleTask) {
                 tasks.remove(value.getId());
+                historyManager.remove(value.getId());
             }
         }
     }
@@ -229,6 +230,7 @@ public class InMemoryTaskManager implements TaskManager {
         for (Task value : tasks.values()) {
             if (value instanceof SubTask) {
                 tasks.remove(value.getId());
+                historyManager.remove(value.getId());
             }
         }
     }
@@ -238,6 +240,7 @@ public class InMemoryTaskManager implements TaskManager {
         for (Task value : tasks.values()) {
             if (value instanceof SubTask || value instanceof EpicTask) {
                 tasks.remove(value.getId());
+                historyManager.remove(value.getId());
             }
         }
     }
