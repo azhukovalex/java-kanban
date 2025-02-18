@@ -99,6 +99,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         updateEpicTask(epic);
     }
+
     @Override
     public Task getSubTaskById(Integer taskId) {
         if (!tasks.containsKey(taskId)) {
@@ -108,6 +109,7 @@ public class InMemoryTaskManager implements TaskManager {
         historyManager.add(tasks.get(taskId));
         return tasks.get(taskId);
     }
+
     @Override
     public void deleteSubTaskById(Integer subTaskId) {
         if (tasks.containsKey(subTaskId)) {
@@ -132,16 +134,19 @@ public class InMemoryTaskManager implements TaskManager {
 
 
     }
+
     @Override
     public Task saveEpicTask(Task epicTask) {
         epicTask.setId(taskIdGenerator.getNextFreeId());
         tasks.put(epicTask.getId(), epicTask);
         return epicTask;
     }
+
     @Override
     public void updateEpicTask(EpicTask epicTask) {
         tasks.put(epicTask.getId(), epicTask);
     }
+
     @Override
     public Task getEpicTaskById(Integer epicId) {
         if (!tasks.containsKey(epicId)) {
@@ -151,6 +156,7 @@ public class InMemoryTaskManager implements TaskManager {
         return tasks.get(epicId);
 
     }
+
     @Override
     public void deleteEpicTaskById(Integer epicId) {
 
@@ -171,6 +177,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
     }
+
     @Override
     public List<SubTask> getEpicSubTasksById(Integer epicId) {
         if (!tasks.containsKey(epicId)) {
@@ -181,6 +188,7 @@ public class InMemoryTaskManager implements TaskManager {
 
         return epicTask.getSubTasks();
     }
+
     @Override
     public List<Task> getAllSingleTask() {
         List<Task> allTasks = new ArrayList<>();
@@ -192,6 +200,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return allTasks;
     }
+
     @Override
     public List<Task> getAllSubTasks() {
         List<Task> allTasks = new ArrayList<>();
@@ -203,6 +212,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return allTasks;
     }
+
     @Override
     public List<Task> getAllEpicTask() {
         List<Task> allTasks = new ArrayList<>();
@@ -214,6 +224,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
         return allTasks;
     }
+
     @Override
     public void deleteAllSingleTask() {
 
@@ -224,6 +235,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
+
     @Override
     public void deleteAllSubTask() {
 
@@ -234,6 +246,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
+    
     @Override
     public void deleteAllEpicTask() {
 
