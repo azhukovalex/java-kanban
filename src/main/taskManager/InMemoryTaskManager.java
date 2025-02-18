@@ -246,7 +246,7 @@ public class InMemoryTaskManager implements TaskManager {
             }
         }
     }
-    
+
     @Override
     public void deleteAllEpicTask() {
 
