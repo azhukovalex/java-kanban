@@ -9,7 +9,7 @@ public class Task {
     protected String description;
     protected Status status;
     protected TaskType taskType;
-    
+
     //Constructors
     public Task(int id, String name, String description, Status state) {
         this.id = id;
@@ -23,12 +23,12 @@ public class Task {
         this.description = description;
         this.status = Status.NEW;
     }
-    
+
     //Getters
     public int getId() {
         return id;
     }
-    
+
     public String getTitle() {
         return name;
     }
@@ -40,12 +40,12 @@ public class Task {
     public main.models.Status getStatus() {
         return status;
     }
-    
+
     //Setters
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -57,7 +57,7 @@ public class Task {
     public void setStatus(main.models.Status status) {
         this.status = status;
     }
-    
+
     //Overrides
     @Override
     public boolean equals(Object o) {
