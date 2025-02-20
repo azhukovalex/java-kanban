@@ -9,7 +9,7 @@ public class SingleTask extends Task {
 
     public SingleTask(int id, String name, String description, Status status) {
         super(id, name, description, status);
-        taskType = main.models.TaskType.SINGLETASK;
+        taskType = TaskType.SINGLETASK;
     }
 
     @Override
@@ -18,7 +18,7 @@ public class SingleTask extends Task {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", state=" + state +
+                ", status=" + status +
                 '}';
     }
 }

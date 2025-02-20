@@ -20,23 +20,31 @@ public interface TaskManager {
     SubTask saveSubTask(SubTask subTask);
 
     void updateSubTask(SubTask subTask);
+
     Task getSubTaskById(Integer taskId);
 
     void deleteSubTaskById(Integer subTaskId);
 
     Task saveEpicTask(Task epicTask);
+
     void updateEpicTask(EpicTask epicTask);
+
     Task getEpicTaskById(Integer epicId);
 
     void deleteEpicTaskById(Integer epicId);
+
     List<SubTask> getEpicSubTasksById(Integer epicId);
 
     List<Task> getAllSingleTask();
+
     List<Task> getAllSubTasks();
+
     List<Task> getAllEpicTask();
 
     void deleteAllSingleTask();
+
     void deleteAllSubTask();
+
     void deleteAllEpicTask();
 
     List<Task> getHistory();

@@ -10,6 +10,7 @@ public enum TaskType {
     TaskType(String value) {
         this.value = value;
     }
+
     public String toString() {
         return value;
     }
